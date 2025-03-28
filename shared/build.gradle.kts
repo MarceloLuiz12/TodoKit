@@ -57,9 +57,9 @@ android {
 publishing {
     publications {
         create<MavenPublication>("release") {
-            groupId = "com.havan.paladinos.business-logic.kmp"
-            artifactId = "havan-paladinos-packages"
-            version = "1.0.4"
+            groupId = "io.github.marcelo"
+            artifactId = "to-do"
+            version = "1.0.0"
 
             afterEvaluate {
                 from(components["kotlin"])
