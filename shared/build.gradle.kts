@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -16,18 +17,21 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_1_8)
         }
     }
-    
+    val xcFrameworkName = "ToDoKitKMP"
+    val xcf = XCFramework(xcFrameworkName)
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "ToDoKitKMP"
+            baseName = xcFrameworkName
+
+            binaryOption("bundleId", "io.github.marcelo.${xcFrameworkName}")
+            xcf.add(this)
             isStatic = true
         }
     }
-
     sourceSets {
         commonMain.dependencies {
             implementation(libs.koin.core)
@@ -44,7 +48,7 @@ kotlin {
 
 android {
     namespace = "com.marcelo.todokit"
-    compileSdk = 35
+    compileSdk = 34
     defaultConfig {
         minSdk = 24
     }

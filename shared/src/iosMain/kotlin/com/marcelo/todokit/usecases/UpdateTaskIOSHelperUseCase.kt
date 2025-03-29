@@ -13,7 +13,7 @@ class UpdateTaskIOSHelperUseCase: KoinComponent {
         error: (Throwable) -> Unit
     ) = updateTaskUseCase(
         params = task,
-        onSuccess = success,
-        onError = error
+        onError = error,
+        onSuccess = success
     )
 }
