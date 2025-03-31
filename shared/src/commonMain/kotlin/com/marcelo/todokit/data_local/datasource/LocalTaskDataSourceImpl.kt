@@ -1,35 +1,60 @@
 package com.marcelo.todokit.data_local.datasource
 
+import com.marcelo.todokit.TaskDataBase
 import com.marcelo.todokit.data.datasource.TaskDataSourceInterface
+import com.marcelo.todokit.data_local.database.DatabaseDriverFactoryInterface
 import com.marcelo.todokit.domain.entities.Task
 import com.marcelo.todokit.domain.enums.TaskStatusEnum
+import com.marcelo.todokit.domain.model.TaskModel
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.flow
 
-class LocalTaskDataSourceImpl : TaskDataSourceInterface {
-    private val tasks = mutableListOf<Task>(
-        Task(1, "Task 1", "Description 1", TaskStatusEnum.TODO, 19L),
-        Task(2, "Task 2", "Description 2", TaskStatusEnum.DONE, 12L ),
-        Task(3, "Task 3", "Description 3", TaskStatusEnum.DONE, 12L ),
-        Task(4, "Task 4", "Description 4", TaskStatusEnum.DONE, 12L ),
-    )
+class LocalTaskDataSourceImpl(
+    private val driverFactory: DatabaseDriverFactoryInterface
+) : TaskDataSourceInterface {
 
-    override fun saveTask(task: Task)  = flow {
-        tasks.add(task)
+    private val database = TaskDataBase(driverFactory.createDriver())
+    private val query = database.taskDataBaseQueries
+
+    override fun saveTask(task: Task) = flow {
+        query.insertTask(
+            title = task.title,
+            description = task.description.orEmpty(),
+            status = task.status,
+            createdAt = task.createdAt
+        )
         emit(true)
     }
 
     override fun getTasks() = flow {
-        emit(tasks)
+        val result = query
+            .readAllTasks()
+            .executeAsList()
+            .map {
+                TaskModel(
+                    id = it.id,
+                    title = it.title,
+                    description = it.description,
+                    status = it.status,
+                    createdAt = it.createdAt
+                )
+            }
+        emit(result)
     }
 
+
     override fun updateTask(task: Task) = flow {
-        tasks.removeAll { it.id == task.id }
-        tasks.add(task)
+        query.updateTask(
+            title = task.title,
+            description = task.description.orEmpty(),
+            status = task.status,
+            id = task.id
+        )
         emit(true)
     }
 
-    override fun deleteTask(taskId: Int)  = flow {
-        tasks.removeAll { it.id == taskId }
+    override fun deleteTask(taskId: Long) = flow {
+        query.deleteTask(taskId)
         emit(true)
     }
 }

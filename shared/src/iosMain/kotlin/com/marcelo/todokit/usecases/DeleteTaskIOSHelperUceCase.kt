@@ -7,7 +7,7 @@ import org.koin.core.component.inject
 class DeleteTaskIOSHelperUceCase: KoinComponent {
     private val deleteTaskUseCase by inject<DeleteTaskUseCase>()
     fun deleteTask(
-        id: Int,
+        id: Long,
         success: (Boolean) -> Unit,
         error: (Throwable) -> Unit
     ) = deleteTaskUseCase(

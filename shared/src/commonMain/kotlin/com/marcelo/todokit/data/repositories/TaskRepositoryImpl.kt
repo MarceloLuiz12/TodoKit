@@ -13,5 +13,5 @@ class TaskRepositoryImpl(
 
     override fun updateTask(task: Task) = dataSource.updateTask(task)
 
-    override fun deleteTask(taskId: Int) = dataSource.deleteTask(taskId)
+    override fun deleteTask(taskId: Long) = dataSource.deleteTask(taskId)
 }

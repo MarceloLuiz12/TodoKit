@@ -8,8 +8,8 @@ import org.koin.core.error.MissingPropertyException
 class DeleteTaskUseCase(
     scope: CoroutineScope,
     private val repository: TaskRepositoryInterface
-) : UseCase<Boolean, Int>(scope = scope) {
-    override fun run(params: Int?) = when (params) {
+) : UseCase<Boolean, Long>(scope = scope) {
+    override fun run(params: Long?) = when (params) {
         null -> throw MissingPropertyException("Params cannot be null")
         else -> repository.deleteTask(params)
     }

@@ -1,8 +1,8 @@
-package com.marcelo.todokit.domain.entities
+package com.marcelo.todokit.domain.model
 
 import com.marcelo.todokit.domain.enums.TaskStatusEnum
 
-data class Task(
+data class TaskModel(
     val id: Long,
     val title: String,
     val description: String?,

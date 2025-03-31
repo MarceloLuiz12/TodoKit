@@ -37,6 +37,10 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.koin.android)
+            implementation(libs.android.driver)
+        }
+        iosMain.dependencies {
+            implementation(libs.native.driver)
         }
     }
 }
@@ -50,14 +54,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-}
-
-sqldelight {
-    databases {
-        create("ToDoKitDatabase") {
-            packageName.set("com.marcelo.todokit")
-        }
     }
 }
 
@@ -95,6 +91,14 @@ publishing {
                         "https://github.com/MarceloLuiz12/TodoKit"
                 }
             }
+        }
+    }
+}
+
+sqldelight {
+    databases {
+        create("TaskDataBase") {
+            packageName.set("com.marcelo.todokit")
         }
     }
 }
