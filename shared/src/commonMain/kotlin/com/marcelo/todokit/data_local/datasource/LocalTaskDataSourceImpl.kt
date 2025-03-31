@@ -4,13 +4,11 @@ import com.marcelo.todokit.TaskDataBase
 import com.marcelo.todokit.data.datasource.TaskDataSourceInterface
 import com.marcelo.todokit.data_local.database.DatabaseDriverFactoryInterface
 import com.marcelo.todokit.domain.entities.Task
-import com.marcelo.todokit.domain.enums.TaskStatusEnum
 import com.marcelo.todokit.domain.model.TaskModel
-import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.flow
 
 class LocalTaskDataSourceImpl(
-    private val driverFactory: DatabaseDriverFactoryInterface
+    driverFactory: DatabaseDriverFactoryInterface
 ) : TaskDataSourceInterface {
 
     private val database = TaskDataBase(driverFactory.createDriver())
