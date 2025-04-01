@@ -6,35 +6,37 @@ import com.marcelo.todokit.domain.usecase.DeleteTaskUseCase
 import com.marcelo.todokit.domain.usecase.GetTasksUseCase
 import com.marcelo.todokit.domain.usecase.UpdateTaskUseCase
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import org.koin.dsl.module
 
 val domainModule = module {
     single {
-        ThreadContextProvider()
+        CoroutineScope(Dispatchers.Default + SupervisorJob())
     }
-    factory { (scope: CoroutineScope) ->
+    factory {
         GetTasksUseCase(
-            scope = scope,
+            scope = get(),
             repository = get(),
         )
     }
-    factory {  (scope: CoroutineScope) ->
+    factory {
         AddTaskUseCase(
-            scope = scope,
+            scope = get(),
             repository = get()
         )
     }
 
-    factory { (scope: CoroutineScope) ->
+    factory {
         DeleteTaskUseCase(
-            scope = scope,
+            scope = get(),
             repository = get()
         )
     }
 
-    factory { (scope: CoroutineScope) ->
+    factory {
         UpdateTaskUseCase(
-            scope = scope,
+            scope = get(),
             repository = get()
         )
     }
