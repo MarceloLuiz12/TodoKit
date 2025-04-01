@@ -12,7 +12,7 @@ let package = Package(
       .binaryTarget(
          name: "shared",
          url: "https://github.com/MarceloLuiz12/TodoKit.git",
-         checksum: "cfa60cda304df7fe59dfc9071cc3546fac49a5503b8f8ae95bfdd3ceee103059"
+         checksum: "2cf55e0f9288729f16a2898ac5edd2978bbcfcdf1bdb0eb5d369efc8a6e4d3f5"
       )
    ]
 )
