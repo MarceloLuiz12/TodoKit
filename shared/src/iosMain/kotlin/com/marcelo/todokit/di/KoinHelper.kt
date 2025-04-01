@@ -5,10 +5,12 @@ import org.koin.core.context.startKoin
 fun initKoin() {
     startKoin {
         modules(
-            dataLocalModule,
-            dataModule,
-            domainModule,
-            platformModule
+            listOf(
+                dataLocalModule,
+                dataModule,
+                domainModule,
+                platformModule
+            )
         )
     }
 }
