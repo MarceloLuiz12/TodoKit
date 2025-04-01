@@ -2,18 +2,19 @@
 import PackageDescription
 
 let package = Package(
-   name: "TodoKit",
+   name: "ToDoKitKMP",
    platforms: [
      .iOS(.v14),
    ],
    products: [
-      .library(name: "TodoKit", targets: ["shared"])
+      .library(name: "ToDoKitKMP", targets: ["shared"])
    ],
    targets: [
       .binaryTarget(
          name: "shared",
          url: "https://github.com/MarceloLuiz12/TodoKit.git",
-         checksum: "591ffad29f84d6f1e9a0cf85de5c256ed68edfd391ce3d5f5b0e113c1b6742c7"
+         checksum: "b5f7637f1aa081f6c74a273685e69ce0f12230a3470d10e6bc6675b9ac54202a"
       )
    ]
 )
+
