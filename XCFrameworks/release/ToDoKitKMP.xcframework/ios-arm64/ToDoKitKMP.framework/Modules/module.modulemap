@@ -1,0 +1,8 @@
+framework module "ToDoKitKMP" {
+    umbrella header "ToDoKitKMP.h"
+
+    export *
+    module * { export * }
+
+    use Foundation
+}
