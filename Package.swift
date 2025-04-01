@@ -13,7 +13,7 @@ let package = Package(
       .binaryTarget(
          name: "shared",
          url: "https://github.com/MarceloLuiz12/TodoKit/releases/download/1.0.2/XCFrameworks.zip",
-         checksum: "7dbda237932d7ef38e180d7534c94c66438dde1dae792bd97636e4fc52b5653f"
+         checksum: "89890e4079b16d3ab9279359eecd6bf05c5cf92df9cd4cb1e737c9768c0cf7f1"
       )
    ]
 )
