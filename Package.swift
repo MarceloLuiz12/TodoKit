@@ -12,7 +12,8 @@ let package = Package(
    targets: [
       .binaryTarget(
          name: "shared",
-          path: "./XCFrameworks/release/ToDoKitKMP.xcframework"
+         url: "https://github.com/MarceloLuiz12/TodoKit/releases/download/1.0.3/XCFrameworks.zip",
+         checksum: "187a8d8daa222c008b6eda6544f02589c0ad5adde3db8335ca61fe718635e003"
       )
    ]
 )
